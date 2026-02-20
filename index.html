@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Surprise! ❤️</title>
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
-    
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <style>
@@ -17,8 +16,8 @@
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: center;
             color: #5a3a41;
+            /* ล็อกหน้าจอไว้ก่อนตอนเริ่มเกม */
             overflow: hidden; 
         }
 
@@ -33,6 +32,8 @@
             width: 90%;
             position: relative;
             z-index: 1; 
+            /* 🌟 ปรับให้จัดกึ่งกลางอย่างปลอดภัย ไม่โดนตัดขอบ 🌟 */
+            margin: auto; 
         }
 
         .photo-container img {
@@ -106,7 +107,6 @@
 <body>
 
     <div class="card">
-        
         <div id="question-section">
             <h1>รักเค้าไหม? 🥺</h1>
             <p>ตอบมาตามความจริงเลยนะ!</p>
@@ -128,7 +128,6 @@
                 เบราว์เซอร์ของคุณไม่รองรับการเล่นเพลง
             </audio>
         </div>
-
     </div>
 
     <script>
@@ -161,27 +160,24 @@
             moveButton();
         });
 
-        // 🌟 ฟังก์ชันสำหรับยิงพลุ 🌟
         function shootFireworks() {
-            var duration = 3 * 1000; // ตั้งเวลาพลุจุด 3 วินาที
+            var duration = 3 * 1000; 
             var end = Date.now() + duration;
 
             (function frame() {
-                // พลุยิงจากฝั่งซ้าย
                 confetti({
                     particleCount: 5,
                     angle: 60,
                     spread: 55,
                     origin: { x: 0, y: 0.8 },
-                    colors: ['#ff69b4', '#ff1493', '#ffb6c1', '#ffffff'] // โทนสีชมพู ขาว
+                    colors: ['#ff69b4', '#ff1493', '#ffb6c1', '#ffffff'] 
                 });
-                // พลุยิงจากฝั่งขวา
                 confetti({
                     particleCount: 5,
                     angle: 120,
                     spread: 55,
                     origin: { x: 1, y: 0.8 },
-                    colors: ['#ff69b4', '#ff1493', '#ffb6c1', '#ffffff'] // โทนสีชมพู ขาว
+                    colors: ['#ff69b4', '#ff1493', '#ffb6c1', '#ffffff'] 
                 });
 
                 if (Date.now() < end) {
@@ -194,13 +190,14 @@
             questionSection.style.display = 'none';
             btnNo.style.display = 'none';
             surpriseSection.style.display = 'block';
-            bgMusic.play();
+            
+            // 🌟 ปลดล็อกให้หน้าจอสามารถเลื่อนลงมาดูเพลงได้แล้ว! 🌟
+            document.body.style.overflow = 'auto';
 
-            // 🌟 เรียกใช้ฟังก์ชันยิงพลุเมื่อกดปุ่มรัก 🌟
+            bgMusic.play();
             shootFireworks();
         });
     </script>
 
 </body>
 </html>
-
